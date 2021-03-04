@@ -3,9 +3,27 @@ import { connect } from 'react-redux';
 
 import Input from '../../../components/UI/Input/input';
 
-const SignIn = props => {
+const SignUP = props => {
     const [inputs, setInputs] = useState(
         {
+            firstName: {
+                elementType: 'input',
+                elementAttributes: {
+                    type: 'text',
+                    placeholder: 'Enter your first name'
+                },
+                value: '',
+                label: ''
+            },
+            lastName: {
+                elementType: 'input',
+                elementAttributes: {
+                    type: 'text',
+                    placeholder: 'Enter your last name'
+                },
+                value: '',
+                label: ''
+            },
             email: {
                 elementType: 'input',
                 elementAttributes: {
@@ -20,6 +38,23 @@ const SignIn = props => {
                 elementAttributes: {
                     type: 'password',
                     placeholder: 'Enter your password'
+                },
+                value: '',
+                label: ''
+            },
+            confirmPassword: {
+                elementType: 'input',
+                elementAttributes: {
+                    type: 'password',
+                    placeholder: 'Enter your password'
+                },
+                value: '',
+                label: ''
+            },
+            accountType: {
+                elementType: 'select',
+                elementConfig: {
+                    options: []
                 },
                 value: '',
                 label: ''
@@ -42,6 +77,7 @@ const SignIn = props => {
     let formInputs = formElementsArray.map(formInput => (
         <Input
             key={formInput.id}
+            value={formInput.config.value}
             elementType={formInput.config.elementType}
             elementAttributes={formInput.config.elementAttributes}
             changed={(event) => inputChangeHandler(event, formInput.id)}
@@ -52,7 +88,7 @@ const SignIn = props => {
     return (
         <div>
             <form>
-                Zaloguj się
+                Zarejestruj się
                 {formInputs}
             </form>
         </div>
@@ -73,4 +109,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUP)
