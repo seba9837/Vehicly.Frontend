@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Input from '../../../components/UI/Input/input';
+import '../auth.css';
 
 const SignIn = props => {
     const [inputs, setInputs] = useState(
@@ -13,7 +15,7 @@ const SignIn = props => {
                     placeholder: 'Enter your email'
                 },
                 value: '',
-                label: ''
+                label: 'E-mail'
             },
             password: {
                 elementType: 'input',
@@ -22,7 +24,7 @@ const SignIn = props => {
                     placeholder: 'Enter your password'
                 },
                 value: '',
-                label: ''
+                label: 'Password'
             }
         }
     );
@@ -44,16 +46,23 @@ const SignIn = props => {
             key={formInput.id}
             elementType={formInput.config.elementType}
             elementAttributes={formInput.config.elementAttributes}
+            label={formInput.config.label}
             changed={(event) => inputChangeHandler(event, formInput.id)}
         />
 
     ))
 
     return (
-        <div>
-            <form>
-                Zaloguj się
-                {formInputs}
+        <div className='authContainer'>
+            <form className='authForm'>
+                <h1>Sign in to Vehicly</h1>
+                <div className='authInputsForm'>
+                    {formInputs}
+                </div>
+                <div className="textWithLinkContainer">
+                    <span>New to Vehicly? </span>
+                    <Link to='/signup'>Create an account</Link>.
+                </div>
             </form>
         </div>
     );

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Input from '../../../components/UI/Input/input';
+import '../auth.css';
 
 const SignUP = props => {
     const [inputs, setInputs] = useState(
@@ -13,7 +15,7 @@ const SignUP = props => {
                     placeholder: 'Enter your first name'
                 },
                 value: '',
-                label: ''
+                label: 'First name'
             },
             lastName: {
                 elementType: 'input',
@@ -22,7 +24,7 @@ const SignUP = props => {
                     placeholder: 'Enter your last name'
                 },
                 value: '',
-                label: ''
+                label: 'Last name'
             },
             email: {
                 elementType: 'input',
@@ -31,7 +33,7 @@ const SignUP = props => {
                     placeholder: 'Enter your email'
                 },
                 value: '',
-                label: ''
+                label: 'E-mail'
             },
             password: {
                 elementType: 'input',
@@ -40,7 +42,7 @@ const SignUP = props => {
                     placeholder: 'Enter your password'
                 },
                 value: '',
-                label: ''
+                label: 'Password'
             },
             confirmPassword: {
                 elementType: 'input',
@@ -49,7 +51,7 @@ const SignUP = props => {
                     placeholder: 'Enter your password'
                 },
                 value: '',
-                label: ''
+                label: 'Confirm password'
             },
             accountType: {
                 elementType: 'select',
@@ -57,7 +59,7 @@ const SignUP = props => {
                     options: []
                 },
                 value: '',
-                label: ''
+                label: 'Account type'
             }
         }
     );
@@ -80,16 +82,23 @@ const SignUP = props => {
             value={formInput.config.value}
             elementType={formInput.config.elementType}
             elementAttributes={formInput.config.elementAttributes}
+            label={formInput.config.label}
             changed={(event) => inputChangeHandler(event, formInput.id)}
         />
 
     ))
 
     return (
-        <div>
-            <form>
-                Zarejestruj się
-                {formInputs}
+        <div className='authContainer'>
+            <form className='authForm'>
+                <h1>Create your account</h1>
+                <div className='authInputsForm'>
+                    {formInputs}
+                </div>
+                <div className='textWithLinkContainer'>
+                    <span>Already have an account? </span>
+                    <Link to='/signin'>Sign in</Link>.
+                </div>
             </form>
         </div>
     );

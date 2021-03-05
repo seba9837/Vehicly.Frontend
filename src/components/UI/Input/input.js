@@ -1,11 +1,14 @@
 import React from 'react';
 
+import './input.css';
+
 const input = props => {
     let inputForm = null;
 
     switch (props.elementType) {
         case ('input'):
             inputForm = <input
+                className='input'
                 {...props.elementAttributes}
                 value={props.value}
                 onChange={props.changed}
@@ -13,6 +16,7 @@ const input = props => {
             break;
         case ('select'):
             inputForm = <select
+                className='input'
                 {...props.elementAttributes}
                 value={props.value}
                 onChange={props.changed}>
@@ -25,6 +29,7 @@ const input = props => {
             break;
         default:
             inputForm = <input
+                className='input'
                 {...props.elementAttributes}
                 value={props.value}
                 onChange={props.changed}
@@ -33,7 +38,7 @@ const input = props => {
     }
 
     return (
-        <div>
+        <div className='inputForm'>
             <label>{props.label}</label>
             {inputForm}
         </div>
