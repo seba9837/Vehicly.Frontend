@@ -1,5 +1,4 @@
 .authContainer {
-    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     width: 600px;
@@ -16,8 +15,6 @@
 .authInputsForm {
     width: 100%;
     padding: 5px;
-    border: 1px solid darkgray;
-    border-radius: 8px;
 }
 
 h1 {

@@ -15,7 +15,8 @@ const SignUP = props => {
                     placeholder: 'Enter your first name'
                 },
                 value: '',
-                label: 'First name'
+                label: 'First name',
+                iconType: 'AccountCircleIcon'
             },
             lastName: {
                 elementType: 'input',
@@ -24,7 +25,8 @@ const SignUP = props => {
                     placeholder: 'Enter your last name'
                 },
                 value: '',
-                label: 'Last name'
+                label: 'Last name',
+                iconType: 'AccountCircleIcon'
             },
             email: {
                 elementType: 'input',
@@ -33,7 +35,8 @@ const SignUP = props => {
                     placeholder: 'Enter your email'
                 },
                 value: '',
-                label: 'E-mail'
+                label: 'E-mail',
+                iconType: 'EmailIcon'
             },
             password: {
                 elementType: 'input',
@@ -42,16 +45,18 @@ const SignUP = props => {
                     placeholder: 'Enter your password'
                 },
                 value: '',
-                label: 'Password'
+                label: 'Password',
+                iconType: 'LockIcon'
             },
             confirmPassword: {
                 elementType: 'input',
                 elementAttributes: {
                     type: 'password',
-                    placeholder: 'Enter your password'
+                    placeholder: 'Confirm your password'
                 },
                 value: '',
-                label: 'Confirm password'
+                label: 'Confirm password',
+                iconType: 'LockIcon'
             },
             accountType: {
                 elementType: 'select',
@@ -59,7 +64,8 @@ const SignUP = props => {
                     options: []
                 },
                 value: '',
-                label: 'Account type'
+                label: 'Account type',
+                iconType: 'AccountTreeIcon'
             }
         }
     );
@@ -83,6 +89,7 @@ const SignUP = props => {
             elementType={formInput.config.elementType}
             elementAttributes={formInput.config.elementAttributes}
             label={formInput.config.label}
+            iconType={formInput.config.iconType}
             changed={(event) => inputChangeHandler(event, formInput.id)}
         />
 

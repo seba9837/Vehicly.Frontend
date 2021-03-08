@@ -15,7 +15,8 @@ const SignIn = props => {
                     placeholder: 'Enter your email'
                 },
                 value: '',
-                label: 'E-mail'
+                label: 'E-mail',
+                iconType: 'EmailIcon'
             },
             password: {
                 elementType: 'input',
@@ -24,7 +25,8 @@ const SignIn = props => {
                     placeholder: 'Enter your password'
                 },
                 value: '',
-                label: 'Password'
+                label: 'Password',
+                iconType: 'LockIcon'
             }
         }
     );
@@ -47,6 +49,7 @@ const SignIn = props => {
             elementType={formInput.config.elementType}
             elementAttributes={formInput.config.elementAttributes}
             label={formInput.config.label}
+            iconType={formInput.config.iconType}
             changed={(event) => inputChangeHandler(event, formInput.id)}
         />
 
