@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Input from '../../../components/UI/Input/input';
+import Button from '../../../components/UI/Button/button';
 import '../auth.css';
 
 const SignUP = (props) => {
@@ -69,7 +70,9 @@ const SignUP = (props) => {
   });
 
   const inputChangeHandler = (event, inputName) => {};
-
+  const submitHandler = (event) => {
+    event.preventDefault();
+  };
   const formElementsArray = [];
   for (let key in inputs) {
     formElementsArray.push({
@@ -95,6 +98,7 @@ const SignUP = (props) => {
       <form className='authForm'>
         <h1>Create your account</h1>
         <div className='authInputsForm'>{formInputs}</div>
+        <Button clicked={(event) => submitHandler(event)}>Sign up</Button>
         <div className='textWithLinkContainer'>
           <span>Already have an account? </span>
           <Link to='/signin'>Sign in</Link>.
