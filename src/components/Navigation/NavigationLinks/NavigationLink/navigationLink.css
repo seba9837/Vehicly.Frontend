@@ -1,0 +1,10 @@
+.navigationLink {
+  display: inline-block;
+  padding: 5px;
+  float: right;
+}
+
+.navigationLink a {
+  text-decoration: none;
+  display: block;
+}
