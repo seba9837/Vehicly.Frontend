@@ -2,32 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import * as actions from '../../../store/actions/index';
 import Input from '../../../components/UI/Input/input';
 import Button from '../../../components/UI/Button/button';
 import '../auth.css';
 
 const SignUP = (props) => {
   const [inputs, setInputs] = useState({
-    firstName: {
-      elementType: 'input',
-      elementAttributes: {
-        type: 'text',
-        placeholder: 'Enter your first name',
-      },
-      value: '',
-      label: 'First name',
-      iconType: 'AccountCircleIcon',
-    },
-    lastName: {
-      elementType: 'input',
-      elementAttributes: {
-        type: 'text',
-        placeholder: 'Enter your last name',
-      },
-      value: '',
-      label: 'Last name',
-      iconType: 'AccountCircleIcon',
-    },
     email: {
       elementType: 'input',
       elementAttributes: {
@@ -58,20 +39,26 @@ const SignUP = (props) => {
       label: 'Confirm password',
       iconType: 'LockIcon',
     },
-    accountType: {
-      elementType: 'select',
-      elementConfig: {
-        options: [],
-      },
-      value: '',
-      label: 'Account type',
-      iconType: 'AccountTreeIcon',
-    },
   });
 
-  const inputChangeHandler = (event, inputName) => {};
+  const inputChangeHandler = (event, inputName) => {
+    const updatedInput = {
+      ...inputs,
+      [inputName]: {
+        ...inputs[inputName],
+        value: event.target.value,
+      },
+    };
+
+    setInputs(updatedInput);
+  };
   const submitHandler = (event) => {
     event.preventDefault();
+    props.onTryRegister(
+      inputs.email.value,
+      inputs.password.value,
+      inputs.confirmPassword.value
+    );
   };
   const formElementsArray = [];
   for (let key in inputs) {
@@ -117,7 +104,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    onTryRegister: (email, password, passwordConfirmation) =>
+      dispatch(actions.tryRegister(email, password, passwordConfirmation)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUP);
