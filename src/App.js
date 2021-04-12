@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Layout from './containers/Layout/Layout';
 import signIn from './containers/Auth/SingIn/signIn';
 import signUp from './containers/Auth/SingUp/signUp';
+import RegisterConfirmation from './components/Auth/RegisterConfirmation/registerConfirmation';
 
 const app = (props) => {
   return (
@@ -12,6 +13,11 @@ const app = (props) => {
       <Switch>
         <Route path='/signin' component={signIn} />
         <Route path='/signup' component={signUp} />
+        <Route
+          exact
+          path='/registerConfirm/:accConfirmCode'
+          component={RegisterConfirmation}
+        />
       </Switch>
     </Layout>
   );

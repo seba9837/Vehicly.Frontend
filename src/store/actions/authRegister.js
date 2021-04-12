@@ -34,11 +34,11 @@ export const tryRegister = (email, password, passwordConfirmation) => {
     axios
       .post('/api/v1/auth/signup', registerData)
       .then((res) => {
-        console.log(res);
         //dispatch(authRegisterSuccess(res));
       })
       .catch((err) => {
         console.log(err);
+        console.log('e');
         //dispatch(authRegisterFailed(err));
       });
   };
