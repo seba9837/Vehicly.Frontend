@@ -21,6 +21,7 @@ const authRegisterSuccess = (state, action) => {
 const authRegisterFailed = (state, action) => {
   return {
     ...initialState,
+    error: action.error,
   };
 };
 

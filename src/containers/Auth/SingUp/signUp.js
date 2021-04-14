@@ -79,9 +79,10 @@ const SignUP = (props) => {
       changed={(event) => inputChangeHandler(event, formInput.id)}
     />
   ));
-
+  let errorList = props.error?.map((err, index) => <li key={index}>{err}</li>);
   return (
     <div className='authContainer'>
+      <div>{errorList}</div>
       <form className='authForm'>
         <h1>Create your account</h1>
         <div className='authInputsForm'>{formInputs}</div>

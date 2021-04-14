@@ -3,23 +3,24 @@ import { Redirect, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const RegisterConfirmation = (props) => {
-  const [registerConfirmed, setregisterConfirmed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const { accConfirmCode } = useParams();
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`/api/v1/actions/${accConfirmCode}`).then((res) => {
-      console.log(res);
-    });
+    confirmAcc();
   }, []);
-
-  let confirmationMessage = null;
+  const confirmAcc = async () => {
+    const resp = await axios.post('/api/v1/auth/confirm', {
+      confirmationCode: accConfirmCode,
+    });
+    console.log(resp);
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  };
   return (
     <div>
       {loading && <div>Spinner</div>}
-      {registerConfirmed && { confirmationMessage }}
       {redirect && <Redirect to='/' />}
     </div>
   );
