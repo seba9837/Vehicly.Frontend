@@ -80,9 +80,12 @@ const Input = (props) => {
   }
 
   return (
-    <div className='inputForm'>
-      {inputIcon}
-      {inputForm}
+    <div>
+      <div className='inputForm'>
+        {inputIcon}
+        {inputForm}
+      </div>
+      {props.error && <p className='errorMessage'>{props.error}</p>}
     </div>
   );
 };

@@ -9,6 +9,7 @@ const initialState = {
 const authRegisterStart = (state, action) => {
   return {
     ...initialState,
+    error: null,
   };
 };
 

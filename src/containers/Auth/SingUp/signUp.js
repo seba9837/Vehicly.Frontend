@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -7,7 +7,7 @@ import Input from '../../../components/UI/Input/input';
 import Button from '../../../components/UI/Button/button';
 import '../auth.css';
 
-const SignUP = (props) => {
+const SignUp = (props) => {
   const [inputs, setInputs] = useState({
     email: {
       elementType: 'input',
@@ -18,6 +18,7 @@ const SignUP = (props) => {
       value: '',
       label: 'E-mail',
       iconType: 'EmailIcon',
+      error: '',
     },
     password: {
       elementType: 'input',
@@ -28,8 +29,9 @@ const SignUP = (props) => {
       value: '',
       label: 'Password',
       iconType: 'LockIcon',
+      error: '',
     },
-    confirmPassword: {
+    passwordConfirmation: {
       elementType: 'input',
       elementAttributes: {
         type: 'password',
@@ -38,8 +40,36 @@ const SignUP = (props) => {
       value: '',
       label: 'Confirm password',
       iconType: 'LockIcon',
+      error: '',
     },
   });
+
+  useEffect(() => {
+    let updatedInputs = {
+      ...inputs,
+    };
+    if (props.error !== null)
+      for (let inputPropertyName in inputs) {
+        if (props.error.hasOwnProperty(inputPropertyName)) {
+          updatedInputs = {
+            ...updatedInputs,
+            [inputPropertyName]: {
+              ...inputs[inputPropertyName],
+              error: props.error[inputPropertyName],
+            },
+          };
+        } else {
+          updatedInputs = {
+            ...updatedInputs,
+            [inputPropertyName]: {
+              ...inputs[inputPropertyName],
+              error: '',
+            },
+          };
+        }
+      }
+    setInputs(updatedInputs);
+  }, [props.error]);
 
   const inputChangeHandler = (event, inputName) => {
     const updatedInput = {
@@ -49,7 +79,6 @@ const SignUP = (props) => {
         value: event.target.value,
       },
     };
-
     setInputs(updatedInput);
   };
   const submitHandler = (event) => {
@@ -57,7 +86,7 @@ const SignUP = (props) => {
     props.onTryRegister(
       inputs.email.value,
       inputs.password.value,
-      inputs.confirmPassword.value
+      inputs.passwordConfirmation.value
     );
   };
   const formElementsArray = [];
@@ -76,13 +105,13 @@ const SignUP = (props) => {
       elementAttributes={formInput.config.elementAttributes}
       label={formInput.config.label}
       iconType={formInput.config.iconType}
+      error={formInput.config.error}
       changed={(event) => inputChangeHandler(event, formInput.id)}
     />
   ));
-  let errorList = props.error?.map((err, index) => <li key={index}>{err}</li>);
+
   return (
     <div className='authContainer'>
-      <div>{errorList}</div>
       <form className='authForm'>
         <h1>Create your account</h1>
         <div className='authInputsForm'>{formInputs}</div>
@@ -111,4 +140,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUP);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

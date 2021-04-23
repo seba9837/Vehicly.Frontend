@@ -38,13 +38,8 @@ export const tryRegister = (email, password, passwordConfirmation) => {
       const {
         data: { errors, status },
       } = await axios.get(`/api/v1/actions/${xCorrelationId}`);
-      console.log(errors, status);
       if (status === 'Failed') {
-        const errorsArr = [];
-        Object.entries(errors).map((val) => {
-          errorsArr.push(...val[1]);
-        });
-        dispatch(authRegisterFailed(errorsArr));
+        dispatch(authRegisterFailed(errors));
       }
     } catch (err) {
       console.log(err);
